@@ -1,0 +1,23 @@
+---
+title: ''
+output: html_document
+---
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(scales) 
+CRtest2 <-read_csv("C:/Users/user/Desktop/CRtest2.csv",col_names =TRUE,locale = locale(encoding = "UTF-8"))
+
+gp=ggplot(CRtest2,mapping = aes(x=time, y=rate_of_return))+
+    #geom_point() +  
+    geom_line(mapping = aes(color=stock))+
+    scale_x_continuous(limits=c(1,6) ,breaks=1:6)+
+    scale_y_continuous(breaks=seq(-1.00, 2.50, by=0.50),labels = comma)+
+    labs(title = "CR")
+    
+ggplotly(gp)
+```
+
